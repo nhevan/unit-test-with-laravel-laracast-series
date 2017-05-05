@@ -17,7 +17,9 @@ class ExampleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                    ->assertSee('Testing Laravel');
+                    ->clickLink('Click Me')
+                    ->assertSee('You have been clicked, punk!')
+                    ->assertPathIs('/feedback');
         });
     }
 }

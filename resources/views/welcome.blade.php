@@ -81,6 +81,7 @@
                 <div class="title m-b-md">
                     Testing Laravel
                 </div>
+                <a href="{{ url('/feedback') }}">Click Me</a>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
