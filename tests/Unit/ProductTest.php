@@ -31,6 +31,6 @@ class ProductTest extends TestCase
      */
     public function a_product_has_a_price()
     {
-    	$this->assertEquals(59, $this->product->price());
+    	$this->assertEquals(59, $this->product->cost());
     }
 }

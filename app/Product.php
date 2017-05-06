@@ -25,7 +25,7 @@ class Product extends Model
      *
      * @return mixed
      */
-    public function price()
+    public function cost()
     {
         return $this->price;
     }
