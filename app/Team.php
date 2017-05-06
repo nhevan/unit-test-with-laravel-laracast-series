@@ -13,12 +13,13 @@ class Team extends Model
 	 * adds a user to the team
 	 * @param [type] $user [description]
 	 */
-	public function addMember($user)
+	public function addMember($users)
 	{
-        $this->guardAgainstTooManyMembers();
+        $this->guardAgainstTooManyMembers($users);
 
-		$method = $user instanceof User ? 'save' : 'saveMany';
-		$this->members()->$method($user);
+		$method = $users instanceof User ? 'save' : 'saveMany';
+
+		$this->members()->$method($users);
 	}
 
 	/**
@@ -63,11 +64,23 @@ class Team extends Model
 	 * guards against assignment of too many members
 	 * @return [type] [description]
 	 */
-    private function guardAgainstTooManyMembers()
+    private function guardAgainstTooManyMembers($users)
     {
-  		if ($this->members()->count() == $this->size) {
+    	$newUsersToAdd = $users instanceof User ? 1 : $users->count();
+    	$newTeamCount = $this->count() + $newUsersToAdd;
+
+  		if ($newTeamCount > $this->maximumSize()) {
   			throw new \Exception;
   		}
+    }
+
+    /**
+     * returns the max size of the team
+     * @return [type] [description]
+     */
+    public function maximumSize()
+    {
+    	return $this->size;
     }
 
     /**

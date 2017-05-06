@@ -147,4 +147,20 @@ class TeamTest extends TestCase
         //assert
         $this->assertEquals(2, $team->count());
     }
+
+    /**
+     * @test
+     * it throws exception when multiple members are being added which exceeds team size
+     */
+    public function it_throws_exception_when_multiple_members_are_being_added_which_exceeds_team_size()
+    {
+    	//arrange
+        $team = factory(Team::class)->create(['size' => 2]);
+
+        $members = factory(User::class, 5)->create();
+
+		//assert
+        $this->setExpectedException('Exception');
+    	$team->addMember($members);
+    }
 }
