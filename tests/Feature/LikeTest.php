@@ -14,7 +14,6 @@ class LikeTest extends TestCase
     use DatabaseTransactions;
 
     protected $post;
-    protected $user;
 
     public function setUp()
     {
@@ -22,9 +21,7 @@ class LikeTest extends TestCase
 
     	//arrange
         $this->post = factory(Post::class)->create();
-        $this->user = factory(User::class)->create();
-		
-		$this->actingAs($this->user);
+        $this->signIn();
     }
     /**
      * @test
