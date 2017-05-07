@@ -20,7 +20,7 @@ class LikeTest extends TestCase
     	parent::setup();
 
     	//arrange
-        $this->post = factory(Post::class)->create();
+        $this->post = createPost();
         $this->signIn();
     }
     /**
